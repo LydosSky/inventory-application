@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+    <%- include('./partials/head', { title })%>
+    <body>
+        <div class="container">
+            <% stores.forEach(store => { %>
+                <div class="card p-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= store.name %></h5>
+                        <p class="card-text"><%= store.location %></p>
+                        <p class="card-subtitle"><%= store.phone %> | <%= store.email %></p>
+                    </div>
+                </div>
+            <%});%>
+        </div>
+    </body>
+</html>

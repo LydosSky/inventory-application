@@ -20,41 +20,43 @@ CREATE TABLE IF NOT EXISTS products (
     category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS inventory (
+CREATE TABLE IF NOT EXISTS stores (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
-    warehouse_location VARCHAR(255) NOT NULL,
-    quantity INTEGER NOT NULL CHECK (quantity >= 0),
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    name VARCHAR(255) NOT NULL,
+    location VARCHAR(255),
+    phone VARCHAR(20),
+    email VARCHAR(255)
 );
 
+CREATE TABLE IF NOT EXISTS stock (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    store_id INTEGER REFERENCES stores(id) ON DELETE CASCADE,
+    product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+    stock_quantity INTEGER NOT NULL CHECK (stock_quantity >= 0),
+    last_restocked TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 INSERT INTO categories (name, description) VALUES
 ('Electronics', 'Devices like phones, laptops, and tablets'),
 ('Furniture', 'Home and office furniture'),
-('Clothing', 'Men and women apparel'),
-('Food', 'Perishable and non-perishable food items');
+('Clothing', 'Men and women apparel');
 
 
 INSERT INTO products (name, description, price, category_id) VALUES
 ('Smartphone', 'Latest model with 128GB storage', 699.99, 1),
-('Laptop', '15-inch screen, 16GB RAM', 1199.99, 1),
 ('Office Chair', 'Ergonomic chair with lumbar support', 149.99, 2),
-('Dining Table', 'Wooden table for 6 people', 299.99, 2),
-('T-Shirt', 'Cotton t-shirt, size M', 19.99, 3),
-('Jeans', 'Blue denim, size 32', 39.99, 3),
-('Cereal Box', '500g box of whole-grain cereal', 4.99, 4),
-('Milk', '1 liter of organic milk', 2.49, 4);
+('T-Shirt', 'Cotton t-shirt, size M', 19.99, 3);
 
-INSERT INTO inventory (product_id, warehouse_location, quantity, last_updated) VALUES
-(1, 'Warehouse A', 50, CURRENT_TIMESTAMP),
-(2, 'Warehouse A', 30, CURRENT_TIMESTAMP),
-(3, 'Warehouse B', 20, CURRENT_TIMESTAMP),
-(4, 'Warehouse B', 10, CURRENT_TIMESTAMP),
-(5, 'Warehouse C', 100, CURRENT_TIMESTAMP),
-(6, 'Warehouse C', 80, CURRENT_TIMESTAMP),
-(7, 'Warehouse A', 200, CURRENT_TIMESTAMP),
-(8, 'Warehouse B', 150, CURRENT_TIMESTAMP);
+
+INSERT INTO stores (name, location, phone, email) VALUES
+('Store A', '123 Main St, New York', '123-456-7890', 'storea@example.com'),
+('Store B', '456 Elm St, San Francisco', '987-654-3210', 'storeb@example.com');
+
+INSERT INTO stock (store_id, product_id, stock_quantity, last_restocked) VALUES
+(1, 1, 50, CURRENT_TIMESTAMP), -- 50 smartphones in Store A
+(1, 2, 30, CURRENT_TIMESTAMP), -- 30 office chairs in Store A
+(2, 3, 100, CURRENT_TIMESTAMP), -- 100 t-shirts in Store B
+(2, 1, 25, CURRENT_TIMESTAMP); -- 25 smartphones in Store B
 `;
 
 async function main() {

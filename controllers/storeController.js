@@ -38,7 +38,7 @@ exports.addStore = (req, res) =>
  *
  * */
 exports.updateStore = (req, res) =>
-  storeQueries.updateStore().then(() => res.redirect('/'));
+  storeQueries.updateStore([]).then(() => res.redirect('/'));
 
 /**
  * Delete Store

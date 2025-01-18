@@ -7,14 +7,14 @@ const pool = require('./pool');
 exports.getAllStores = () =>
   pool.query('SELECT * FROM stores').then((response) => response.rows);
 
-/*
+/**
  * Get a single store details by store id
  * @param {number} storeId - Id of wanted store
  */
 exports.getStoreById = (storeId) =>
   pool.query('SELECT * FROM stores WHERE id = $1', [storeId]);
 
-/*
+/**
  * Add New Store
  * @param {array} store
  * store is a array filled with values of the
@@ -37,10 +37,10 @@ exports.updateStore = (store) =>
     store,
   );
 
-/*
+/**
  * Delete store
  * @param {number} storeId - Id of the store
  * deletes store with given id
  */
 exports.deleteStore = (storeId) =>
-  pool.query('DELETE FROM store WHERE id = $1', [storeId]);
+  pool.query('DELETE FROM stores WHERE id = $1', [storeId]);

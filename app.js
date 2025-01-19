@@ -3,10 +3,10 @@ const path = require('node:path');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const indexRouter = require('./routes/indexRouter');
-const categoryRouter = require('./routes/indexRouter');
+const stockRouter = require('./routes/stockRouter');
+const categoryRouter = require('./routes/categoryRouter');
 const productRouter = require('./routes/productRouter');
-const inventoryRouter = require('./routes/inventoryRouter');
+const storeRouter = require('./routes/storeRouter');
 
 const app = express();
 
@@ -30,6 +30,10 @@ app.use('/', stockRouter);
 app.use('/categories', categoryRouter);
 app.use('/products', productRouter);
 app.use('/stores', storeRouter);
+
+app.use((err, req, res, next) => {
+  console.log(err);
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {

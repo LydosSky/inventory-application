@@ -19,7 +19,7 @@ exports.getAllStores = (req, res) =>
  * */
 exports.getStoreById = (req, res) =>
   storeQueries
-    .getStoreById(parseInt(res.params.id))
+    .getStoreById(parseInt(req.params.storeId))
     .then((store) => res.send(_.first(store)));
 
 /**
@@ -29,7 +29,7 @@ exports.getStoreById = (req, res) =>
  *
  * */
 exports.addStore = (req, res) =>
-  storeQueries.addStore().then(() => res.redirect('/'));
+  storeQueries.addStore([]).then(() => res.send('store added'));
 
 /**
  * Update Store
@@ -38,7 +38,7 @@ exports.addStore = (req, res) =>
  *
  * */
 exports.updateStore = (req, res) =>
-  storeQueries.updateStore([]).then(() => res.redirect('/'));
+  storeQueries.updateStore([]).then(() => res.send('store updated'));
 
 /**
  * Delete Store
@@ -47,5 +47,5 @@ exports.updateStore = (req, res) =>
  */
 exports.deleteStore = (req, res) =>
   storeQueries
-    .deleteStore(parseInt(req.params.id))
-    .then(() => res.redirect('/'));
+    .deleteStore(parseInt(req.params.storeId))
+    .then(() => res.send('store deleted'));

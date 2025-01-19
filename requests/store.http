@@ -1,0 +1,13 @@
+GET http://localhost:3000/stores
+
+### 
+GET http://localhost:3000/stores/2
+
+### 
+POST http://localhost:3000/stores
+
+###
+PUT http://localhost:3000/stores
+
+### 
+DELETE localhost:3000/stores/1

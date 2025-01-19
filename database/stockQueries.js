@@ -1,5 +1,5 @@
+const { response } = require('express');
 const pool = require('./pool');
-
 /**
  * Gets all of the categories created from database
  * @param {}
@@ -12,14 +12,18 @@ exports.getAllStock = () =>
  * @param {number} storeId
  * */
 exports.getStockByStoreId = (storeId) =>
-  pool.query('SELECT * FROM stock WHERE store_id = $1', [storeId]);
+  pool
+    .query('SELECT * FROM stock WHERE store_id = $1', [storeId])
+    .then((response) => response.rows);
 
 /**
  * Get Stock of given product
  * @param {number} productId
  */
 exports.getStockByProductId = (productId) =>
-  pool.query('SELECT * FROM stock WHERE product_id = $1', [storeId]);
+  pool
+    .query('SELECT * FROM stock WHERE product_id = $1', [productId])
+    .then((response) => response.rows);
 
 /**
  * Add Stock
@@ -29,7 +33,7 @@ exports.getStockByProductId = (productId) =>
  * */
 exports.addStock = (stock) =>
   pool.query(
-    'INSERT INTO stock (store_id, product_id, stock_quantity, last_restocked) VALUES ($1, $2, $3, $4)',
+    'INSERT INTO stock (store_id, product_id, stock_quantity, last_restocked) VALUES ($1, $2, $3, CURRENT_TIMESTAMP)',
     stock,
   );
 
@@ -50,6 +54,5 @@ exports.updateStock = (stock) =>
  * @param {number} stockId
  * deletes the stock of given id
  * */
-
 exports.deleteStock = (stockId) =>
   pool.query('DELETE FROM stock WHERE id = $1', [stockId]);

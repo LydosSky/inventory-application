@@ -12,7 +12,9 @@ exports.getAllStores = () =>
  * @param {number} storeId - Id of wanted store
  */
 exports.getStoreById = (storeId) =>
-  pool.query('SELECT * FROM stores WHERE id = $1', [storeId]);
+  pool
+    .query('SELECT * FROM stores WHERE id = $1', [storeId])
+    .then((response) => response.rows);
 
 /**
  * Add New Store

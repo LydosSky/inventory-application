@@ -26,24 +26,44 @@ exports.getStoreById = (req, res) =>
  * Add new Store
  * @param {Request} req
  * @param {Response} res
- *
+ * A store is
+ * {
+ *   name: string
+ *   location: string
+ *   phone: string
+ *   email: string
+ * }
  * */
 exports.addStore = (req, res) =>
-  storeQueries.addStore([]).then(() => res.send('store added'));
+  storeQueries
+    .addStore(({ name, location, phone, email } = req.body))
+    .then(() => res.send('store added'));
 
 /**
  * Update Store
  * @param {Request} req
  * @param {Response} res
- *
+ * Pick store information from the form creates new
+ * store object with information. Key is providing
+ * proper id of store.
+ * {
+ *   id: number
+ *   name: string
+ *   location: string
+ *   phone: string
+ *   email: string
+ * }
  * */
 exports.updateStore = (req, res) =>
-  storeQueries.updateStore([]).then(() => res.send('store updated'));
+  storeQueries
+    .updateStore(({ id, name, location, phone, email } = req.body))
+    .then(() => res.send('store updated'));
 
 /**
  * Delete Store
  * @param {Request} req
  * @param {Response} res
+ *
  */
 exports.deleteStore = (req, res) =>
   storeQueries

@@ -18,25 +18,35 @@ exports.getStoreById = (storeId) =>
 
 /**
  * Add New Store
- * @param {array} store
- * store is a array filled with values of the
- * store array example [name, location, phone, email]
+ * @param {Object} store
+ * store is a object filled with values
+ * store Object is {
+ *   id: number,
+ *   name: string,
+ *   location: string,
+ *   email:string
+ * }
  */
-exports.addStore = (store) =>
+exports.addStore = ({ name, location, phone, email }) =>
   pool.query(
-    'INSERT INTO stores (name, location, phone, email) VALUES ($1, $2 $3, $4)',
-    store,
+    'INSERT INTO stores (name, location, phone, email) VALUES ($1, $2, $3, $4)',
+    [name, location, phone, email],
   );
 
 /**
  * Update store
- * @param {array} store - is array with updated or old values
- * first value of the array is the id of the store
+ * @param {Object} store - is object with updated or old values
+ * store Object is {
+ *   id: number,
+ *   name: string,
+ *   location: string,
+ *   email:string
+ * }
  * */
-exports.updateStore = (store) =>
+exports.updateStore = ({ id, name, location, phone, email }) =>
   pool.query(
     'UPDATE stores SET name = $2, location = $3, phone = $4, email = $5 WHERE id = $1',
-    store,
+    [id, name, location, phone, email],
   );
 
 /**

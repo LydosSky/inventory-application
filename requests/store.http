@@ -1,13 +1,20 @@
 GET http://localhost:3000/stores
 
 ### 
-GET http://localhost:3000/stores/2
+GET http://localhost:3000/stores/13
 
-### 
+###
 POST http://localhost:3000/stores
+Content-Type: application/x-www-form-urlencoded
+
+name=store name&location=earth&phone=9999999&email=store@mail.com&
+
 
 ###
 PUT http://localhost:3000/stores
+Content-Type: application/x-www-form-urlencoded
+
+id=13&name=fancy store name&location=earth&phone=9999999&email=store@mail.com&
 
 ### 
-DELETE localhost:3000/stores/1
+DELETE http://localhost:3000/stores/12

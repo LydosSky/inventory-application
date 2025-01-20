@@ -4,10 +4,15 @@ GET http://localhost:3000/categories
 GET http://localhost:3000/categories/2
 
 ###
-POST http://localhost:3000/stores
+POST http://localhost:3000/categories
+Content-Type: application/x-www-form-urlencoded
+
+name=new category&description=testing for cetegory&
 
 ###
-PUT http://localhost:3000/stores
+PUT http://localhost:3000/categories
+Content-Type: application/x-www-form-urlencoded
+id=4&name=updated new category&description=testing for cetegory&
 
 ###
-DELETE localhost:3000/stores/1
+DELETE localhost:3000/categories/1

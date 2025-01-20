@@ -18,25 +18,33 @@ exports.getCategoryById = (categoryId) =>
 
 /**
  * Add New Category
- * @param {array} category
- * category is a array filled with values of the
- * category array [name, description]
+ * @param {Object} category
+ * category is an Object
+ * {
+ *   @prop {string} name,
+ *   @prop {string} description
+ * }
  */
-exports.addCategory = (category) =>
-  pool.query(
-    'INSERT INTO categories (name, description) VALUES ($1, $2)',
-    category,
-  );
+exports.addCategory = ({ name, description }) =>
+  pool.query('INSERT INTO categories (name, description) VALUES ($1, $2)', [
+    name,
+    description,
+  ]);
 
 /**
  * Update category
- * @param {array} category - is an array with updated or old values
- * first value of the array is the id of the category
+ * @param {Object} category - is an object
+ * Key is providing proper category id.
+ * {
+ *   @prop {number} id
+ *   @prop {string} name
+ *   @prop {string} description
+ * }
  * */
-exports.updateCategory = (category) =>
+exports.updateCategory = ({ id, name, description }) =>
   pool.query(
     'UPDATE categories SET name = $2, description = $3 WHERE id = $1',
-    category,
+    [id, name, description],
   );
 
 /**

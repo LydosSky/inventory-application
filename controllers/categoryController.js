@@ -25,7 +25,9 @@ exports.getCategoryById = (req, res) =>
  * @param {Response} res
  * */
 exports.addCategory = (req, res) =>
-  categoryQueries.addCategory([]).then(() => res.send('category added'));
+  categoryQueries
+    .addCategory(({ name, description } = req.body))
+    .then(() => res.send('category added'));
 
 /**
  * Update Category
@@ -33,7 +35,9 @@ exports.addCategory = (req, res) =>
  * @param {Response} res
  * */
 exports.updateCategory = (req, res) =>
-  categoryQueries.updateCategory([]).then(() => res.send('category updated'));
+  categoryQueries
+    .updateCategory(({ id, name, description } = req.body))
+    .then(() => res.send('category updated'));
 
 /**
  * Delete Category

@@ -34,7 +34,9 @@ exports.getStockByProductId = (req, res) =>
  * @param {Response} res
  * */
 exports.addStock = (req, res) =>
-  stockQueries.addStock([]).then(() => res.redirect('/'));
+  stockQueries
+    .addStock(({ storeId, productId, stockQuantity } = req.body))
+    .then(() => res.redirect('/'));
 
 /**
  * Update Stock of Product in a Store
@@ -42,7 +44,9 @@ exports.addStock = (req, res) =>
  * @param {Response} res
  * */
 exports.updateStock = (req, res) =>
-  stockQueries.updateStock([]).then(() => res.redirect('/'));
+  stockQueries
+    .updateStock(({ id, stockQuantity } = req.body))
+    .then(() => res.redirect('/'));
 
 /**
  * Delete Stock of Product from Store

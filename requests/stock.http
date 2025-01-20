@@ -1,13 +1,22 @@
 GET http://localhost:3000
 
 ###
-GET http://localhost:3000/store/1
+GET http://localhost:3000/store/2
 
 ###
-GET http://localhost:3000/product/1
+GET http://localhost:3000/product/2
 
 ###
 POST http://localhost:3000
+Content-Type: application/x-www-form-urlencoded
+
+storeId=1&productId=3&stockQuantity=100&
 
 ###
 PUT http://localhost:3000
+Content-Type: application/x-www-form-urlencoded
+
+id=5&stockQuantity=90&
+
+###
+DELETE http://localhost:3000

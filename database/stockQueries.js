@@ -27,26 +27,33 @@ exports.getStockByProductId = (productId) =>
 
 /**
  * Add Stock
- * @param {array} stock
- * stock is an array
- * -- [store_id, product_id, stock_quantity, last_restocked]
+ * @param {Object} stock
+ * stock is object
+ * {
+ *   @prop {number} storeId
+ *   @prop {number} productId
+ *   @prop {number} stockQuantity
+ * }
  * */
-exports.addStock = (stock) =>
+exports.addStock = ({ storeId, productId, stockQuantity }) =>
   pool.query(
     'INSERT INTO stock (store_id, product_id, stock_quantity, last_restocked) VALUES ($1, $2, $3, CURRENT_TIMESTAMP)',
-    stock,
+    [storeId, productId, stockQuantity],
   );
 
 /**
  * Update Stock
- * @param {array} stock
- * Updating stock takes product_id and store_id and stock_quantity
- * -- [store_id, product_id, stock_quantity]
+ * @param {Object} stock
+ * Updating stock for given stores product
+ * {
+ *   @prop {number} id
+ *   @prop {number} stockQuantity
+ * }
  * */
-exports.updateStock = (stock) =>
+exports.updateStock = ({ id, stockQuantity }) =>
   pool.query(
-    'UPDATE stock SET stock_quantity = $3, last_restocked = CURRENT_TIMESTAMP WHERE store_id = $1, product_id = $2',
-    stock,
+    'UPDATE stock SET stock_quantity = $2, last_restocked = CURRENT_TIMESTAMP WHERE id = $1',
+    [id, stockQuantity],
   );
 
 /**

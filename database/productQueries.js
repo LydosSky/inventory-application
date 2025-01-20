@@ -18,25 +18,37 @@ exports.getProductById = (productId) =>
 
 /**
  * Add New Product
- * @param {array} product
- * product is an array filled with values
- * -- [name, description, price, category_id]
+ * @param {Object} product
+ * product is an Object
+ * {
+ *   @prop {string} name
+ *   @prop {string} description
+ *   @prop {number} price
+ *   @prop {number} category_id
+ * }
  */
-exports.addProduct = (product) =>
+exports.addProduct = ({ name, description, price, category_id }) =>
   pool.query(
     'INSERT INTO products (name, description, price, category_id) VALUES ($1, $2, $3, $4)',
-    product,
+    [name, description, price, category_id],
   );
 
 /**
  * Update Product
- * @param {array} product - is an array with updated or old values
- * first value of the array is the id of the product
+ * @param {Object} product -
+ * product is an Object
+ * {
+ *   @prop {number} id
+ *   @prop {string} name
+ *   @prop {string} description
+ *   @prop {number} price
+ *   @prop {number} category_id
+ * }
  * */
-exports.updateProduct = (product) =>
+exports.updateProduct = ({ id, name, description, price, category_id }) =>
   pool.query(
     'UPDATE products SET name = $2, description = $3, price = $4, category_id = $5 WHERE id = $1',
-    product,
+    [id, name, description, price, category_id],
   );
 
 /**

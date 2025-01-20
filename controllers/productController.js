@@ -25,7 +25,9 @@ exports.getProductById = (req, res) =>
  * @param {Response} res
  * */
 exports.addProduct = (req, res) =>
-  productQueries.addProduct([]).then(() => res.send('product added'));
+  productQueries
+    .addProduct(({ name, description, price, category_id } = req.body))
+    .then(() => res.send('product added'));
 
 /**
  * Update Product
@@ -33,7 +35,9 @@ exports.addProduct = (req, res) =>
  * @param {Response} res
  * */
 exports.updateProduct = (req, res) =>
-  productQueries.updateProduct([]).then(() => res.send('product updated'));
+  productQueries
+    .updateProduct(({ id, name, description, price, category_id } = req.body))
+    .then(() => res.send('product updated'));
 
 /**
  * Delete Product
@@ -41,4 +45,6 @@ exports.updateProduct = (req, res) =>
  * @param {Response} res
  * */
 exports.deleteProduct = (req, res) =>
-  productQueries.deleteProduct([]).then(() => res.send('product deleted'));
+  productQueries
+    .deleteProduct(req.params.productId)
+    .then(() => res.send('product deleted'));

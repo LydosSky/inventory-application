@@ -5,11 +5,13 @@ GET http://localhost:3000/products/2
 
 ### 
 POST http://localhost:3000/products
+Content-Type: application/x-www-form-urlencoded
 
-
+name=phone&description=brand new mobile phone&price=250&category_id=1&
 ###
 PUT http://localhost:3000/products
+Content-Type: application/x-www-form-urlencoded
 
-
+id=4&name=iphone&description=brand new mobile phone&price=799&category_id=1&
 ### 
 DELETE http://localhost:3000/products/1

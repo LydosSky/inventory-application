@@ -7,7 +7,11 @@ const _ = require('lodash');
  * @param {Response} res
  * */
 exports.getCategories = (req, res) =>
-  categoryQueries.getAllCategories().then((categories) => res.send(categories));
+  categoryQueries
+    .getAllCategories()
+    .then((categories) =>
+      res.render('categories', { title: 'Stock | Categories', categories }),
+    );
 
 /**
  * Get Category by Id

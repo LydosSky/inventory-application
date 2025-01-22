@@ -7,7 +7,11 @@ const _ = require('lodash');
  * @param {Response} res
  * */
 exports.getAllProducts = (req, res) =>
-  productQueries.getAllProducts().then((products) => res.send(products));
+  productQueries
+    .getAllProducts()
+    .then((products) =>
+      res.render('products', { title: 'Products', products }),
+    );
 
 /**
  * Get Product by Id

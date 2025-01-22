@@ -5,10 +5,14 @@ const _ = require('lodash');
  * Gets all stores from database
  * @param {Request} req
  * @param {Response} res
- * eventually also willbe rendering a view
+ * eventually also will be rendering a view
  * */
 exports.getAllStores = (req, res) =>
-  storeQueries.getAllStores().then((stores) => res.send(stores));
+  storeQueries
+    .getAllStores()
+    .then((stores) =>
+      res.render('stores', { title: 'Stock | Stores', stores }),
+    );
 
 /**
  * Gets  store by id

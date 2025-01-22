@@ -49,7 +49,6 @@ exports.updateStock = (req, res) =>
   stockQueries
     .updateStock(({ id, stockQuantity } = req.body))
     .then(() => res.redirect('/'));
-
 /**
  * Delete Stock of Product from Store
  * @param {Request} req

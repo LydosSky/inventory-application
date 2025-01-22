@@ -1,12 +1,14 @@
-<form action="/" method="PUT" class="row p-3">
+<form action="/stockUpdate"  method="POST" class="row p-3">
   <div class="mb-3">
     <label for="stock" class="form-label">Id</label>
-    <select name="id" id="storeId" class="form-select"></select>
+    <select name="id" id="storeId" class="form-select" readonly>
+      <option selected><%= stock.id %></option>
+    </select>
   </div>
 
   <div class="mb-3">
     <label for="quantity" class="form-label">Quantity</label>
-    <input name='stockQuantity' id="quantity' type="text" class="form-control">
+    <input name='stockQuantity' id="quantity' type="text" class="form-control" value=<%= stock.stock_quantity%>>
   </div>
 
   <div class="mb-3">

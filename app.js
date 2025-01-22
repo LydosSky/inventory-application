@@ -1,3 +1,4 @@
+const morgan = require('morgan');
 const express = require('express');
 const path = require('node:path');
 const dotenv = require('dotenv');
@@ -25,6 +26,12 @@ app.use(
   '/js',
   express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')),
 );
+
+morgan.token('body', function (req) {
+  return Object.keys(req.body).length > 0 ? JSON.stringify(req.body) : '----';
+});
+
+app.use(morgan(':method :url :body'));
 
 app.use('/', stockRouter);
 app.use('/categories', categoryRouter);

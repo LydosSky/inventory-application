@@ -4,6 +4,9 @@
     <body>
         <%- include('./partials/nav') %>
         <div class="px-5">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Stock
+            </button>
             <table class="table">
                 <thead>
                     <tr>
@@ -22,10 +25,18 @@
                             <td><%= item.store_id  %></td>
                             <td><%= item.stock_quantity  %></td>
                             <td><%= new Date(item.last_restocked).toLocaleString()  %></td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=<%= "#" + item.id %>>
+                                    Update Stock
+                                </button>
+                            </td>
+                            <%- include('./partials/updateModal.ejs',  { formName: 'stockUpdateForm',  stock: item })  %>
                         </tr>
                     <% }); %>
                 </tbody>
             </table>
+            <%- include('./partials/addModal.ejs',  { formName: 'stockAddForm', stores, products })  %>
+
         </div>
     </body>
 </html>

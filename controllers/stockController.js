@@ -1,14 +1,29 @@
 const stockQueries = require('../database/stockQueries');
+const productQueries = require('../database/productQueries');
+const storeQueries = require('../database/storeQueries');
 
 /**
  * Get all of the stock
  * @param {Request} req
  * @param {Response} res
  * */
-exports.getAllStock = (req, res) =>
-  stockQueries.getAllStock().then((stock) => {
-    res.render('index', { stock, title: 'Homepage' });
+exports.getAllStock = async (req, res) => {
+  const products = await productQueries.getAllProducts();
+  const stores = await storeQueries.getAllStores();
+  const stock = await stockQueries.getAllStock();
+  return res.render('index', {
+    title: 'Stock | Stocks',
+    products: products.map((p) => ({
+      id: p.id,
+      name: p.name,
+    })),
+    stores: stores.map((s) => ({
+      id: s.id,
+      name: s.name,
+    })),
+    stock,
   });
+};
 
 /**
  * Get Stock of a Store

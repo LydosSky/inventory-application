@@ -6,7 +6,9 @@ const stockQueries = require('../database/stockQueries');
  * @param {Response} res
  * */
 exports.getAllStock = (req, res) =>
-  stockQueries.getAllStock().then((stock) => res.send(stock));
+  stockQueries.getAllStock().then((stock) => {
+    res.render('index', { stock, title: 'Homepage' });
+  });
 
 /**
  * Get Stock of a Store

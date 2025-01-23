@@ -31,7 +31,7 @@ exports.getCategoryById = (req, res) =>
 exports.addCategory = (req, res) =>
   categoryQueries
     .addCategory(({ name, description } = req.body))
-    .then(() => res.send('category added'));
+    .then(() => res.redirect('/categories'));
 
 /**
  * Update Category
@@ -41,7 +41,7 @@ exports.addCategory = (req, res) =>
 exports.updateCategory = (req, res) =>
   categoryQueries
     .updateCategory(({ id, name, description } = req.body))
-    .then(() => res.send('category updated'));
+    .then(() => res.redirect('/categories'));
 
 /**
  * Delete Category

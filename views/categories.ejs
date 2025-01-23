@@ -4,6 +4,9 @@
     <body>
         <%- include('./partials/nav') %>
         <div class="px-5">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Category
+            </button>
             <table class="table">
                 <thead>
                     <tr>
@@ -18,10 +21,17 @@
                             <th><%= item.id  %></th>
                             <td><%= item.name  %></td>
                             <td><%= item.description  %></td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=<%= "#" + item.id %>>
+                                    Update Category
+                                </button>
+                            </td>
+                            <%- include('./partials/categoryUpdateModal.ejs', { formName: "categoryUpdateForm", category: item }) %>
                         </tr>
                     <% }); %>
                 </tbody>
             </table>
         </div>
+        <%- include('./partials/categoryAddModal', { formName: 'categoryAddForm' })%>
     </body>
 </html>

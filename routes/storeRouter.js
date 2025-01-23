@@ -5,8 +5,8 @@ const storeRouter = Router();
 
 storeRouter.get('/', storeController.getAllStores);
 storeRouter.get('/:storeId', storeController.getStoreById);
-storeRouter.post('/', storeController.addStore);
-storeRouter.put('/', storeController.updateStore);
+storeRouter.post('/storeUpdate', storeController.updateStore);
+storeRouter.post('/storeAdd', storeController.addStore);
 storeRouter.delete('/:storeId', storeController.deleteStore);
 
 module.exports = storeRouter;

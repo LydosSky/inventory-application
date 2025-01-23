@@ -30,12 +30,12 @@
                                     Update Stock
                                 </button>
                             </td>
-                            <%- include('./partials/updateModal.ejs',  { formName: 'stockUpdateForm',  stock: item })  %>
+                            <%- include('./partials/stockUpdateModal.ejs',  { formName: 'stockUpdateForm',  stock: item })  %>
                         </tr>
                     <% }); %>
                 </tbody>
             </table>
-            <%- include('./partials/addModal.ejs',  { formName: 'stockAddForm', stores, products })  %>
+            <%- include('./partials/stockAddModal.ejs',  { formName: 'stockAddForm', stores, products })  %>
 
         </div>
     </body>

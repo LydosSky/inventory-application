@@ -1,13 +1,8 @@
-<form action="/products" method="POST" class="p-3">
+<form action="/products/productAdd" method="POST" class="p-3">
 
   <div class="mb-3">
     <label for="name" class="form-label">Product</label>
     <input type="text" id='name' class="form-control" name="name">
-  </div>
-
-  <div class="mb-3">
-    <label for="brand" class="form-label">Brand</label>
-    <input type="text" id='brand' class="form-control" name="brand">
   </div>
 
   <div class="mb-3">
@@ -22,7 +17,11 @@
 
   <div class="mb-3">
     <label for="category" class="form-label">Category</label>
-    <select name="categoryId" id="category" class="form-select"></select>
+    <select name="categoryId" id="category" class="form-select">
+            <% categories.forEach(c => { %>
+              <option value=<%= c.id %>><%= c.id %> | <%= c.name %></option>
+            <% }) %>
+    </select>
   </div>
 
 

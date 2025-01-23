@@ -4,6 +4,9 @@
     <body>
         <%- include('./partials/nav') %>
         <div class="px-5">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Product
+            </button>
             <table class="table">
                 <thead>
                     <tr>
@@ -21,11 +24,19 @@
                             <td><%= item.name  %></td>
                             <td><%= item.description  %></td>
                             <td>$<%= item.price  %></td>
-                            <td><%= item.category_id  %></td>
+                            <td><%= item.category_id  %> | <%= categories.reduce((prev, curr) => curr.id === item.category_id ? curr.name : "")%></td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=<%= "#" + item.id %>>
+                                    Update Product
+                                </button>
+                            </td>
+                            <%- include('./partials/productUpdateModal.ejs', { formName: "productUpdateForm", product: item, categories: categories }) %>
                         </tr>
                     <% }); %>
                 </tbody>
             </table>
         </div>
+
+        <%- include('./partials/productAddModal', { formName: "productAddForm", categories: categories })  %>
     </body>
 </html>

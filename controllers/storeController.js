@@ -41,7 +41,7 @@ exports.getStoreById = (req, res) =>
 exports.addStore = (req, res) =>
   storeQueries
     .addStore(({ name, location, phone, email } = req.body))
-    .then(() => res.send('store added'));
+    .then(() => res.redirect('/stores'));
 
 /**
  * Update Store
@@ -61,7 +61,7 @@ exports.addStore = (req, res) =>
 exports.updateStore = (req, res) =>
   storeQueries
     .updateStore(({ id, name, location, phone, email } = req.body))
-    .then(() => res.send('store updated'));
+    .then(() => res.redirect('/stores'));
 
 /**
  * Delete Store

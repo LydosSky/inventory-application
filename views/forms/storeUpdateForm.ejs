@@ -1,31 +1,30 @@
-<form action="/stores" method="POST" class="p-3">
+<form action="/stores/storeUpdate" method="POST" class="p-3">
   <div class="mb-3">
     <label for="id" class="form-label">Store ID</label>
-    <input type="text" id='name' class="form-control" name="id" disabled>
+    <input type="text" id='name' class="form-control" name="id" readonly value=<%= store.id  %>>
   </div>
 
   <div class="mb-3">
     <label for="name" class="form-label">Store</label>
-    <input type="text" id='name' class="form-control" name="name">
+    <input type="text" id='name' class="form-control" name="name" value=<%= store.name %>>
   </div>
 
   <div class="mb-3">
     <label for="location" class="form-label">Location</label>
-    <input id='location' type="text" class="form-control" name="location">
+    <input id='location' type="text" class="form-control" name="location" value=<%= store.location  %>>
   </div>
 
   <div class="mb-3">
     <label for="phone" class="form-label">Phone</label>
-    <input id='phone' type="phone" class="form-control" name="phone">
+    <input id='phone' type="phone" class="form-control" name="phone" value=<%= store.phone %>>
   </div>
 
   <div class="mb-3">
     <label for="email" class="form-label">Email</label>
-    <input id='email' type="email" class="form-control" name="email">
+    <input id='email' type="email" class="form-control" name="email" value=<%= store.email %>>
   </div>
 
   <div class="mb-3">
     <button type="submit" class="btn btn-primary w-100">Submit</button>
   </div>
-  
 </form>

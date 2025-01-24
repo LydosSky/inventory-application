@@ -28,7 +28,7 @@ app.use(
 );
 
 morgan.token('body', function (req) {
-  return Object.keys(req.body).length > 0 ? JSON.stringify(req.body) : '----';
+  return Object.keys(req.body).length > 0 ? JSON.stringify(req.body) : '';
 });
 
 app.use(morgan(':method :url :body'));

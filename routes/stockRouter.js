@@ -8,6 +8,6 @@ stockRouter.get('/store/:storeId', stockController.getStockByStoreId);
 stockRouter.get('/product/:productId', stockController.getStockByProductId);
 stockRouter.post('/stockAdd', stockController.addStock);
 stockRouter.post('/stockUpdate', stockController.updateStock);
-stockRouter.delete('/:stockId', stockController.deleteStock);
+stockRouter.post('/:stockId', stockController.deleteStock);
 
 module.exports = stockRouter;

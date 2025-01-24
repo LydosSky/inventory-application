@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS products (
     name VARCHAR(255) NOT NULL,
     description TEXT,
     price NUMERIC(10, 2) NOT NULL,
-    category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
+    category_id INTEGER REFERENCES categories(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE IF NOT EXISTS stores (
@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS stores (
 
 CREATE TABLE IF NOT EXISTS stock (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    store_id INTEGER REFERENCES stores(id) ON DELETE CASCADE,
-    product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+    store_id INTEGER REFERENCES stores(id) ON DELETE RESTRICT,
+    product_id INTEGER REFERENCES products(id) ON DELETE RESTRICT,
     stock_quantity INTEGER NOT NULL CHECK (stock_quantity >= 0),
     last_restocked TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

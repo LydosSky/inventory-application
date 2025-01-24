@@ -51,4 +51,4 @@ exports.updateCategory = (req, res) =>
 exports.deleteCategory = (req, res) =>
   categoryQueries
     .deleteCategory(parseInt(req.params.categoryId))
-    .then(() => res.send('category deleted'));
+    .then(() => res.redirect('/categories'));

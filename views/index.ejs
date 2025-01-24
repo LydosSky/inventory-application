@@ -5,6 +5,7 @@
         <%- include('./partials/nav') %>
         <div class="p-5">
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="bi bi-plus-lg"></i>
                 Add Stock
             </button>
             <table class="table">
@@ -15,20 +16,26 @@
                         <th scope="col">Store ID</th>
                         <th scope="col">Stock Quantity</th>
                         <th scope="col">Last Updated</th>
+                        <th scope="col">Buttons</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% stock.forEach((item) => { %>
                         <tr>
                             <th><%= item.id  %></th>
-                            <td><%= item.product_id  %></td>
-                            <td><%= item.store_id  %></td>
+                            <td><%= item.product_id  %> | <%= products.reduce((prev, curr) => curr.id === item.product_id ? curr.name : prev, "")  %></td>
+                            <td><%= item.store_id  %> | <%= stores.reduce((prev, curr) => curr.id === item.store_id ? curr.name : prev, "")  %></td>
                             <td><%= item.stock_quantity  %></td>
                             <td><%= new Date(item.last_restocked).toLocaleString()  %></td>
                             <td>
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target=<%= "#" + item.id %>>
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
+                                <form action="/<%= item.id %>" method="POST" class='d-inline'>
+                                    <button type="submit" class="btn btn-danger delete-button" id=<%= item.id  %> >
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
                             </td>
                             <%- include('./partials/stockUpdateModal.ejs',  { formName: 'stockUpdateForm',  stock: item })  %>
                         </tr>
@@ -36,7 +43,6 @@
                 </tbody>
             </table>
             <%- include('./partials/stockAddModal.ejs',  { formName: 'stockAddForm', stores, products })  %>
-
         </div>
     </body>
 </html>

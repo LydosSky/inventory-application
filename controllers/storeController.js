@@ -72,4 +72,4 @@ exports.updateStore = (req, res) =>
 exports.deleteStore = (req, res) =>
   storeQueries
     .deleteStore(parseInt(req.params.storeId))
-    .then(() => res.send('store deleted'));
+    .then(() => res.redirect('/stores'));

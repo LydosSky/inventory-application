@@ -52,4 +52,4 @@ exports.updateProduct = (req, res) =>
 exports.deleteProduct = (req, res) =>
   productQueries
     .deleteProduct(req.params.productId)
-    .then(() => res.send('product deleted'));
+    .then(() => res.redirect('/products'));
